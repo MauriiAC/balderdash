@@ -5,6 +5,7 @@ import { usePrivado } from './hooks/usePrivado'
 import { useSala } from './hooks/useSala'
 import { useSesionLocal } from './hooks/useSesionLocal'
 import { Escribiendo } from './pantallas/Escribiendo'
+import { Final } from './pantallas/Final'
 import { Inicio } from './pantallas/Inicio'
 import { Lobby } from './pantallas/Lobby'
 import { Revelando } from './pantallas/Revelando'
@@ -109,20 +110,7 @@ export function App() {
     }
   }
 
-  return (
-    <div className="pantalla">
-      <header className="tapa">
-        <h1>Terminó la partida</h1>
-      </header>
-      <p className="atenuado">
-        La tabla de posiciones llega en la etapa 3. Se jugaron{' '}
-        {Object.keys(sala.historial ?? {}).length} rondas.
-      </p>
-      <button className="secundario" onClick={alSalir}>
-        Salir de la sala
-      </button>
-    </div>
-  )
+  return <Final sala={sala} uid={uid} alSalir={alSalir} />
 }
 
 function PantallaError({ mensaje, alVolver }: { mensaje: string; alVolver?: () => void }) {

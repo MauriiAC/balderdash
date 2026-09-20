@@ -413,3 +413,66 @@ textarea:focus-visible {
 .revelacion.real .autoria strong {
   color: var(--ok);
 }
+
+/* ── Tabla de posiciones ────────────────────────────────────────────────── */
+
+.tabla {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fila-tabla {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 2px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.fila-tabla:last-child {
+  border-bottom: none;
+}
+
+.posicion {
+  width: 24px;
+  flex: none;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--texto-atenuado);
+  font-weight: 600;
+}
+
+.fila-tabla.puntero .posicion {
+  color: var(--acento);
+}
+
+.fila-tabla .datos {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.fila-tabla .nombre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fila-tabla.puntero .nombre {
+  font-weight: 600;
+}
+
+.puntos {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--acento);
+}

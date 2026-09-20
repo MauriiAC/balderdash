@@ -1,6 +1,8 @@
 import { AccionHost } from '../componentes/AccionHost'
 import { CabeceraRonda } from '../componentes/CabeceraRonda'
 import { Cargando } from '../componentes/Cargando'
+import { TablaPosiciones } from '../componentes/TablaPosiciones'
+import { calcularTabla } from '../logica/puntaje'
 import { siguienteRonda } from '../servicios/ronda'
 import { AUTOR_REAL } from '../tipos'
 import type { Ronda, SalaPublica } from '../tipos'
@@ -22,6 +24,13 @@ export function Revelando({ codigo, sala, ronda, uid }: Props) {
   const esUltima = ronda.numero >= sala.config.rondas
 
   const nombre = (deUid: string) => jugadores[deUid]?.nombre ?? 'alguien que se fue'
+
+  const uids = Object.keys(jugadores)
+  // La misma función que arma la tabla final, pero sobre una sola ronda.
+  const deLaRonda = calcularTabla({ [ronda.numero]: entrada }, uids).filter(
+    (fila) => fila.puntos > 0,
+  )
+  const acumulada = calcularTabla(sala.historial, uids)
 
   const votantesDe = (opcionId: string) =>
     Object.entries(votos)
@@ -72,6 +81,32 @@ export function Revelando({ codigo, sala, ronda, uid }: Props) {
           )
         })}
       </ul>
+
+      <section className="bloque">
+        <h2>Puntos de esta ronda</h2>
+        {deLaRonda.length === 0 ? (
+          <p className="atenuado chico">No sumó nadie.</p>
+        ) : (
+          <ul className="lista-jugadores">
+            {deLaRonda.map((fila) => (
+              <li key={fila.uid}>
+                <span className="nombre">{nombre(fila.uid)}</span>
+                <span className="puntos">+{fila.puntos}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section className="bloque">
+        <h2>Cómo va la tabla</h2>
+        <TablaPosiciones
+          tabla={acumulada}
+          jugadores={jugadores}
+          uidPropio={uid}
+          compacta
+        />
+      </section>
 
       {soyHost ? (
         <AccionHost

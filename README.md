@@ -12,9 +12,10 @@ con la verdadera y todos votan cuál creen que es la real.
 React + TypeScript + Vite, Firebase Realtime Database, sin backend propio. El sitio
 es 100% estático.
 
-> **Estado: etapa 2 de 4.** Andan las salas, el lobby, la presencia, la reconexión
-> y el ciclo de ronda completo (escribir → votar → revelar). La tabla de posiciones
-> y el deploy llegan en las etapas siguientes.
+> **Estado: etapa 3 de 4.** El juego está completo: salas, lobby, presencia,
+> reconexión, ciclo de ronda (escribir → votar → revelar), puntaje y tabla final.
+> Falta la etapa 4: los pasos para crear el proyecto en Firebase y deployar en
+> Netlify.
 
 ## Desarrollo con el emulador
 
@@ -55,9 +56,15 @@ PATH="/opt/homebrew/opt/openjdk/bin:$PATH" npm run emulador
 ## Pruebas
 
 ```bash
-npm test           # lógica pura (códigos de sala, normalización, puntaje)
+npm test              # lógica pura: códigos, normalización, barajado, puntaje
 npm run test:reglas   # reglas de seguridad, con el emulador prendido
 ```
+
+`src/logica/` no importa nada de Firebase, así que se testea sin emulador ni mocks.
+Ahí viven las cuatro cosas donde un bug pasa desapercibido y arruina la partida:
+el barajado (tiene que ser distinto por jugador pero igual entre recargas), la
+normalización (empareja el estilo de tipeo para que la definición real no cante),
+la selección de palabra (nunca repetir en una partida) y el puntaje.
 
 `pruebas/reglas.mjs` corre cada invariante de `database.rules.json` con un caso que
 tiene que pasar y uno que tiene que ser rechazado.
@@ -71,6 +78,16 @@ npm run dev
 
 Los pasos para crear el proyecto, activar el acceso anónimo, cargar las reglas y
 deployar en Netlify están en la etapa 4.
+
+## Cómo se cuenta el puntaje
+
+- **+2** por cada vez que votaste la definición verdadera
+- **+1** por cada jugador que cayó en una definición tuya
+
+El puntaje no se guarda en ningún lado: se deriva del historial de la partida cada
+vez que se muestra. Por eso la regla de `puntaje` es `.validate: false` — nadie
+puede escribirlo, ni siquiera el host — y por eso recargar la página no te hace
+perder nada.
 
 ## Ampliar la lista de palabras
 

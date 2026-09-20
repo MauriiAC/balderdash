@@ -274,6 +274,7 @@ balderdash/
     └── componentes/
         ├── ListaJugadores.tsx  ListaEspera.tsx
         ├── CabeceraRonda.tsx   AccionHost.tsx
+        ├── TablaPosiciones.tsx
         └── Cargando.tsx
 ```
 
