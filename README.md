@@ -215,6 +215,11 @@ escribirlo, ni siquiera el host — y por eso recargar la página no te hace per
 
 ## Ampliar la lista de palabras
 
+Hoy hay **303 palabras** cargadas, que son 20 partidas de 15 rondas sin repetir una
+sola. La lista curada vive en
+[`herramientas/palabras-curadas.json`](herramientas/palabras-curadas.json) y de ahí
+se exporta `src/data/palabras.ts`.
+
 ### Unas pocas, a mano
 
 Agregá objetos a `PALABRAS` en [`src/data/palabras.ts`](src/data/palabras.ts):
@@ -241,9 +246,11 @@ Los dos insumos se bajan a mano una vez (están linkeados en la cabecera del scr
 Después:
 
 ```bash
-python3 herramientas/generar_palabras.py filtrar     --diccionario kaikki.org-dictionary-Spanish.jsonl     --frecuencias es_full.txt --salida candidatos.csv
+python3 herramientas/generar_palabras.py filtrar --diccionario kaikki.org-dictionary-Spanish.jsonl --frecuencias es_full.txt --salida candidatos.csv
+```
 
-python3 herramientas/generar_palabras.py pendientes --csv candidatos.csv     --cantidad 60 --salida tanda.json
+```bash
+python3 herramientas/generar_palabras.py pendientes --csv candidatos.csv --cantidad 60 --salida tanda.json
 ```
 
 `tanda.json` sale con las glosas en inglés y la consigna de cómo redactarlas. Quien
@@ -251,7 +258,7 @@ las escriba devuelve un JSON con `palabra`, `definicion`, `apta` y `motivo`, y e
 vuelve al CSV:
 
 ```bash
-python3 herramientas/generar_palabras.py incorporar --csv candidatos.csv     --respuestas tanda-resuelta.json
+python3 herramientas/generar_palabras.py incorporar --csv candidatos.csv --respuestas tanda-resuelta.json
 ```
 
 En el CSV, la columna `usar` es el veto manual y le gana a lo que haya dicho quien
@@ -259,15 +266,53 @@ redactó: `no` descarta una que venía marcada como apta, `si` rescata una desca
 Cuando estés conforme:
 
 ```bash
-python3 herramientas/generar_palabras.py exportar --csv candidatos.csv     --salida src/data/palabras.ts --limite 800
+python3 herramientas/generar_palabras.py exportar --csv candidatos.csv --salida src/data/palabras.ts
 ```
+
+### Antes de dar una definición por buena
+
+[`herramientas/verificar_palabras.py`](herramientas/verificar_palabras.py) contrasta
+cada definición contra el Wikcionario en español. No decide nada: pone las dos al lado
+para que alguien compare. Es lo que agarró que `algibe` iba con jota y que `condumio`
+no es la comida del camino sino la que se come con pan.
+
+```bash
+python3 herramientas/verificar_palabras.py --entrada tanda.json --salida revisadas.csv --frecuencias es_full.txt
+```
+
+Avisa de tres cosas: palabras que no existen (casi siempre es un error de tipeo),
+palabras demasiado comunes según el corpus de frecuencia, y cuáles conviene mirar
+primero porque comparten pocas palabras con la definición de referencia.
+
+Esa última señal es ruidosa y conviene saberlo: nuestras definiciones son coloquiales
+a propósito y las del Wikcionario son formales, así que dos maneras correctas de decir
+lo mismo pueden no compartir una sola palabra. Sirve para elegir por dónde empezar, no
+para descartar sin leer.
+
+El filtro de frecuencia también tiene su límite: el corpus es de subtítulos y
+mayormente peninsular, así que marca `bochinche` como rara y deja pasar `relinchar`.
+Es una señal, no un veredicto.
+
+### Qué hace que una palabra no sirva
+
+De unas 700 candidatas escritas a mano quedaron 303. Lo que más descarta, en orden:
+
+1. **Es conocida.** El tope está en el puesto 100.000 del corpus de frecuencia. Entre
+   los 40.000 que traía el script y ese número caen cosas como `armatoste` y
+   `mamarracho`, que nadie tendría que adivinar.
+2. **Es ambigua.** `escora` es antes el puntal del astillero que la inclinación del
+   barco; `hez` en plural son los excrementos; `sorna` es parsimonia antes que burla.
+   Dos acepciones fuertes no dan risa al revelar, dan discusión.
+3. **La definición se delata.** Si contiene la raíz de la propia palabra, o si es
+   mucho más corta que lo que escribe un jugador, canta sola. El exportador aborta en
+   los dos casos.
 
 ### Cuántas rondas se pueden jugar
 
 El máximo por partida es el menor entre la cantidad de palabras cargadas y
 `MAX_RONDAS` (15, en [`src/logica/rondas.ts`](src/logica/rondas.ts)). El segundo tope
-existe porque cada ronda son varios minutos: sin él, con 800 palabras el selector
-ofrecería 800 opciones.
+existe porque cada ronda son varios minutos: sin él, con 300 palabras el selector
+ofrecería 300 opciones.
 
 Si cambiás `MAX_RONDAS`, cambiá también el tope en `database.rules.json`. Hay un test
 que falla si dejan de coincidir.
