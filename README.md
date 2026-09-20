@@ -9,6 +9,10 @@ con la verdadera y todos votan cuál creen que es la real.
 - **+2** por cada vez que votaste la definición verdadera
 - **+1** por cada jugador que cayó en una definición tuya
 
+Al terminar, el host puede arrancar otra partida con el mismo código: siguen los
+mismos jugadores, se borra el puntaje y vuelven a estar disponibles todas las
+palabras.
+
 React + TypeScript + Vite, Firebase Realtime Database, sin backend propio. El sitio
 es 100% estático.
 

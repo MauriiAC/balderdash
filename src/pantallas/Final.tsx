@@ -1,15 +1,19 @@
+import { AccionHost } from '../componentes/AccionHost'
 import { nombreDe, TablaPosiciones } from '../componentes/TablaPosiciones'
 import { calcularTabla } from '../logica/puntaje'
+import { volverAlLobby } from '../servicios/ronda'
 import type { SalaPublica } from '../tipos'
 
 interface Props {
+  codigo: string
   sala: SalaPublica
   uid: string
   alSalir: () => void
 }
 
-export function Final({ sala, uid, alSalir }: Props) {
+export function Final({ codigo, sala, uid, alSalir }: Props) {
   const jugadores = sala.jugadores ?? {}
+  const soyHost = sala.host === uid
   const tabla = calcularTabla(sala.historial, Object.keys(jugadores))
   const rondasJugadas = Object.keys(sala.historial ?? {}).length
 
@@ -44,6 +48,19 @@ export function Final({ sala, uid, alSalir }: Props) {
         +2 por cada definición verdadera que votaste, +1 por cada jugador que
         cayó en una tuya.
       </p>
+
+      {soyHost ? (
+        <AccionHost
+          etiqueta="Jugar otra"
+          accion={() => volverAlLobby(codigo)}
+          nota="Vuelven al lobby con el mismo código. Se borra el puntaje y las palabras vuelven a estar todas disponibles."
+        />
+      ) : (
+        <p className="atenuado">
+          {nombreDe(jugadores, sala.host)} puede arrancar otra partida con el
+          mismo código.
+        </p>
+      )}
 
       <button className="secundario" onClick={alSalir}>
         Salir de la sala

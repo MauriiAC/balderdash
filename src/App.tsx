@@ -110,7 +110,7 @@ export function App() {
     }
   }
 
-  return <Final sala={sala} uid={uid} alSalir={alSalir} />
+  return <Final codigo={sesion.codigo} sala={sala} uid={uid} alSalir={alSalir} />
 }
 
 function PantallaError({ mensaje, alVolver }: { mensaje: string; alVolver?: () => void }) {

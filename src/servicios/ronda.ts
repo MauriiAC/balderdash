@@ -181,3 +181,25 @@ export async function votar(codigo: string, uid: string, opcionId: string): Prom
     [`publico/ronda/votaron/${uid}`]: true,
   })
 }
+
+/**
+ * Vuelve la sala al lobby para jugar otra con la misma gente, sin tener que
+ * repartir un código nuevo.
+ *
+ * Se borra todo lo de la partida anterior, incluidas las palabras usadas: si
+ * se conservaran, la segunda partida arrancaría con lo que sobró de la primera
+ * y se quedaría sin material antes de llegar a la última ronda.
+ *
+ * Los jugadores y la cantidad de rondas se mantienen. El puntaje desaparece
+ * solo, porque sale del historial.
+ */
+export async function volverAlLobby(codigo: string): Promise<void> {
+  await update(ref(db, `salas/${codigo}`), {
+    'publico/estado': 'lobby',
+    'publico/ronda': null,
+    'publico/historial': null,
+    'publico/usadas': null,
+    privado: null,
+    secreto: null,
+  })
+}

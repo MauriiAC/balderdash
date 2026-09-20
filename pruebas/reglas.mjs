@@ -314,5 +314,35 @@ await debeFallar('y no puede volver hasta la próxima sala', () =>
   update(ref(B.db, `${RP}/jugadores/${uidB}`), { nombre: 'Sofi', conectado: true }),
 )
 
+titulo('Jugar otra en la misma sala')
+await debeAndar('A cierra la partida', () => set(ref(A.db, `${RP}/estado`), 'terminado'))
+await debeFallar('B reinicia la partida por su cuenta', () =>
+  update(ref(B.db, R), {
+    'publico/estado': 'lobby',
+    'publico/historial': null,
+    'publico/usadas': null,
+  }),
+)
+await debeFallar('B borra el historial para tapar su derrota', () =>
+  set(ref(B.db, `${RP}/historial`), null),
+)
+await debeAndar('A vuelve al lobby y limpia la partida anterior', () =>
+  update(ref(A.db, R), {
+    'publico/estado': 'lobby',
+    'publico/ronda': null,
+    'publico/historial': null,
+    'publico/usadas': null,
+    privado: null,
+    secreto: null,
+  }),
+)
+await debeAndar('el historial quedó vacío', async () => {
+  const snap = await get(ref(A.db, `${RP}/historial`))
+  if (snap.exists()) throw new Error('quedó historial de la partida anterior')
+})
+await debeAndar('C ahora sí puede entrar: la sala volvió al lobby', () =>
+  update(ref(C.db, `${RP}/jugadores/${uidC}`), { nombre: 'Tercero', conectado: true }),
+)
+
 console.log(`\n${ok} ok, ${mal} mal`)
 process.exit(mal === 0 ? 0 : 1)

@@ -176,6 +176,17 @@ Si `numero < config.rondas`: reemplaza `ronda` completa por la siguiente (fase
 `escribiendo`, palabra nueva) y limpia `secreto`.
 Si no: `estado: "terminado"`.
 
+**terminado → lobby (jugar otra)**
+Vuelve a `estado: "lobby"` y borra `ronda`, `historial`, `usadas`, `privado` y
+`secreto`. Se mantienen los jugadores, el host y la cantidad de rondas; el puntaje
+desaparece solo, porque sale del historial.
+
+`usadas` se borra a propósito: si se conservara, la segunda partida arrancaría con
+lo que sobró de la primera y se quedaría sin palabras antes de la última ronda.
+
+Efecto secundario buscado: como la regla de entrada solo deja sumarse con la sala en
+`lobby`, quien no llegó a tiempo para la primera partida puede entrar a la revancha.
+
 ## Cálculo del puntaje
 
 Función pura sobre `historial`:
