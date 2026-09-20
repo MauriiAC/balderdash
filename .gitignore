@@ -13,6 +13,7 @@ ui-debug.log
 # generador de palabras
 candidatos.csv
 tanda*.json
+!herramientas/palabras-curadas.json
 *.jsonl
 es_full.txt
 __pycache__/

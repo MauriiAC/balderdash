@@ -1,0 +1,390 @@
+[
+ {
+  "palabra": "cazcarria",
+  "definicion": "el barro que se te pega en el borde de abajo del pantalón"
+ },
+ {
+  "palabra": "jeribeque",
+  "definicion": "una mueca o gesto exagerado con la cara"
+ },
+ {
+  "palabra": "estafermo",
+  "definicion": "alguien que se queda parado y embobado sin hacer nada"
+ },
+ {
+  "palabra": "guirigay",
+  "definicion": "un griterío desordenado donde no se entiende nada"
+ },
+ {
+  "palabra": "carantoña",
+  "definicion": "un mimo hecho a propósito para conseguir algo"
+ },
+ {
+  "palabra": "gaznápiro",
+  "definicion": "una persona torpe y medio tonta"
+ },
+ {
+  "palabra": "zurrapa",
+  "definicion": "la borra o el sedimento que queda en el fondo de un líquido"
+ },
+ {
+  "palabra": "tolondro",
+  "definicion": "el chichón que te queda después de un golpe en la cabeza"
+ },
+ {
+  "palabra": "escolimoso",
+  "definicion": "alguien difícil de contentar, que se queja de todo"
+ },
+ {
+  "palabra": "chafallo",
+  "definicion": "un remiendo hecho mal y a las apuradas"
+ },
+ {
+  "palabra": "almirez",
+  "definicion": "el mortero de metal donde se machacan especias"
+ },
+ {
+  "palabra": "alcuza",
+  "definicion": "la aceitera que se lleva a la mesa"
+ },
+ {
+  "palabra": "aguamanil",
+  "definicion": "la jarra con la que se echaba agua para lavarse las manos"
+ },
+ {
+  "palabra": "jofaina",
+  "definicion": "la palangana ancha y baja para lavarse la cara"
+ },
+ {
+  "palabra": "artesa",
+  "definicion": "el cajón de madera donde se amasa el pan"
+ },
+ {
+  "palabra": "cuévano",
+  "definicion": "el cesto alto y hondo que se carga en la espalda"
+ },
+ {
+  "palabra": "zaranda",
+  "definicion": "la criba para separar lo grueso de lo fino"
+ },
+ {
+  "palabra": "acetre",
+  "definicion": "el baldecito de metal para sacar agua del pozo"
+ },
+ {
+  "palabra": "orza",
+  "definicion": "la vasija de barro vidriado para guardar conservas"
+ },
+ {
+  "palabra": "trébedes",
+  "definicion": "el aro de hierro con tres patas que sostiene la olla sobre el fuego"
+ },
+ {
+  "palabra": "morillo",
+  "definicion": "cada uno de los hierros que sostienen la leña en la chimenea"
+ },
+ {
+  "palabra": "badil",
+  "definicion": "la palita para mover las brasas"
+ },
+ {
+  "palabra": "garlopa",
+  "definicion": "el cepillo largo del carpintero para alisar tablas"
+ },
+ {
+  "palabra": "escoplo",
+  "definicion": "el hierro con filo para hacer huecos en la madera"
+ },
+ {
+  "palabra": "gubia",
+  "definicion": "el formón curvo para vaciar la madera"
+ },
+ {
+  "palabra": "almocafre",
+  "definicion": "la herramienta corta para escardar y trasplantar"
+ },
+ {
+  "palabra": "alcorque",
+  "definicion": "el hoyo que se deja al pie del árbol para que junte agua"
+ },
+ {
+  "palabra": "bruza",
+  "definicion": "el cepillo duro para limpiar caballos"
+ },
+ {
+  "palabra": "albarda",
+  "definicion": "la montura acolchada que se le pone a la mula para la carga"
+ },
+ {
+  "palabra": "adarga",
+  "definicion": "el escudo ovalado de cuero"
+ },
+ {
+  "palabra": "alfanje",
+  "definicion": "el sable corto y curvo"
+ },
+ {
+  "palabra": "chirimía",
+  "definicion": "la flauta antigua de sonido agudo y nasal"
+ },
+ {
+  "palabra": "zampoña",
+  "definicion": "la flauta de varios caños atados uno al lado del otro"
+ },
+ {
+  "palabra": "hilván",
+  "definicion": "la costura floja que sujeta la tela antes de coserla en serio"
+ },
+ {
+  "palabra": "festón",
+  "definicion": "el bordado de ondas que remata un borde"
+ },
+ {
+  "palabra": "pingajo",
+  "definicion": "el pedazo de tela que cuelga hecho jirones"
+ },
+ {
+  "palabra": "guiñapo",
+  "definicion": "la ropa tan gastada que ya es un trapo"
+ },
+ {
+  "palabra": "zascandil",
+  "definicion": "un enredador que va y viene metiéndose donde no lo llaman"
+ },
+ {
+  "palabra": "tarambana",
+  "definicion": "una persona de poco juicio, que no para quieta"
+ },
+ {
+  "palabra": "pelafustán",
+  "definicion": "un vago sin oficio ni plata"
+ },
+ {
+  "palabra": "chisgarabís",
+  "definicion": "un metido que se mete en todo sin que lo llamen"
+ },
+ {
+  "palabra": "currutaco",
+  "definicion": "un tipo bajito y muy arreglado, de aire presumido"
+ },
+ {
+  "palabra": "pazguato",
+  "definicion": "alguien que se queda pasmado ante cualquier cosa"
+ },
+ {
+  "palabra": "zafio",
+  "definicion": "alguien grosero y sin la menor delicadeza"
+ },
+ {
+  "palabra": "cazurro",
+  "definicion": "una persona callada y desconfiada, difícil de tratar"
+ },
+ {
+  "palabra": "casquivano",
+  "definicion": "alguien que actúa sin pensar y con poca cabeza"
+ },
+ {
+  "palabra": "melifluo",
+  "definicion": "alguien de voz y modales tan dulces que empalagan"
+ },
+ {
+  "palabra": "mohín",
+  "definicion": "el gesto de disgusto que se hace frunciendo la boca"
+ },
+ {
+  "palabra": "desgaire",
+  "definicion": "el descuido fingido con el que alguien se muestra despreocupado"
+ },
+ {
+  "palabra": "zangolotear",
+  "definicion": "sacudir algo de un lado a otro sin cuidado"
+ },
+ {
+  "palabra": "otear",
+  "definicion": "mirar a lo lejos desde un lugar alto"
+ },
+ {
+  "palabra": "alharaca",
+  "definicion": "el escándalo exagerado por algo que no era para tanto"
+ },
+ {
+  "palabra": "barahúnda",
+  "definicion": "el lío de gente y ruido donde nadie se entiende"
+ },
+ {
+  "palabra": "batahola",
+  "definicion": "el bochinche grande que arman muchos a la vez"
+ },
+ {
+  "palabra": "zipizape",
+  "definicion": "la pelea ruidosa que se arma de golpe"
+ },
+ {
+  "palabra": "pelotera",
+  "definicion": "la discusión a los gritos entre varios"
+ },
+ {
+  "palabra": "cencerrada",
+  "definicion": "el ruido de latas y cencerros con que se burlaba a los recién casados"
+ },
+ {
+  "palabra": "retahíla",
+  "definicion": "la lista larga de cosas dichas una atrás de la otra"
+ },
+ {
+  "palabra": "monserga",
+  "definicion": "el discurso pesado y enredado que nadie quiere escuchar"
+ },
+ {
+  "palabra": "filípica",
+  "definicion": "el reto largo y furioso dicho en público"
+ },
+ {
+  "palabra": "ambages",
+  "definicion": "las vueltas que se dan para no decir algo de frente"
+ },
+ {
+  "palabra": "circunloquio",
+  "definicion": "el rodeo de palabras para no nombrar algo directamente"
+ },
+ {
+  "palabra": "canícula",
+  "definicion": "los días de calor más pesado del verano"
+ },
+ {
+  "palabra": "orvallo",
+  "definicion": "la llovizna fina que moja de a poco"
+ },
+ {
+  "palabra": "cellisca",
+  "definicion": "la nieve con agua que cae de costado por el viento"
+ },
+ {
+  "palabra": "galerna",
+  "definicion": "el viento fuerte y repentino que se levanta en la costa"
+ },
+ {
+  "palabra": "arrebol",
+  "definicion": "el rojo que toman las nubes con el sol bajo"
+ },
+ {
+  "palabra": "belfo",
+  "definicion": "el labio grueso y colgante del caballo"
+ },
+ {
+  "palabra": "corva",
+  "definicion": "el hueco que queda atrás de la rodilla"
+ },
+ {
+  "palabra": "occipucio",
+  "definicion": "la parte de atrás de la cabeza, donde termina el cráneo"
+ },
+ {
+  "palabra": "verdugón",
+  "definicion": "la marca hinchada y alargada que deja un golpe de látigo"
+ },
+ {
+  "palabra": "desaguisado",
+  "definicion": "el estropicio que queda después de hacer algo mal"
+ },
+ {
+  "palabra": "potingue",
+  "definicion": "la mezcla espesa de aspecto dudoso que alguien te quiere hacer tomar"
+ },
+ {
+  "palabra": "condumio",
+  "definicion": "la comida que se come acompañando el pan"
+ },
+ {
+  "palabra": "pitanza",
+  "definicion": "la ración de comida que a alguien le toca por día"
+ },
+ {
+  "palabra": "zurrón",
+  "definicion": "la bolsa de cuero que el pastor lleva colgada"
+ },
+ {
+  "palabra": "talabartero",
+  "definicion": "el que trabaja el cuero para monturas y cinturones"
+ },
+ {
+  "palabra": "albéitar",
+  "definicion": "el que curaba animales antes de que existieran los veterinarios"
+ },
+ {
+  "palabra": "chalán",
+  "definicion": "el que compra y vende caballos con mucha labia"
+ },
+ {
+  "palabra": "buhonero",
+  "definicion": "el vendedor ambulante de cosas chicas y baratas"
+ },
+ {
+  "palabra": "cicerone",
+  "definicion": "el que te muestra un lugar contándote su historia"
+ },
+ {
+  "palabra": "zahorí",
+  "definicion": "el que dice encontrar agua bajo tierra con una varita"
+ },
+ {
+  "palabra": "trashumante",
+  "definicion": "el que se muda con sus animales según la estación"
+ },
+ {
+  "palabra": "adalid",
+  "definicion": "el que va adelante y encabeza una causa"
+ },
+ {
+  "palabra": "cachivache",
+  "definicion": "el trasto inútil que uno guarda por las dudas"
+ },
+ {
+  "palabra": "chirimbolo",
+  "definicion": "un objeto raro del que nadie sabe bien el nombre"
+ },
+ {
+  "palabra": "atarazana",
+  "definicion": "el galpón a la orilla del agua donde se construían barcos"
+ },
+ {
+  "palabra": "aljibe",
+  "definicion": "el depósito bajo tierra donde se junta el agua de lluvia"
+ },
+ {
+  "palabra": "zaguán",
+  "definicion": "el pasillo de entrada que va de la puerta al patio"
+ },
+ {
+  "palabra": "poyo",
+  "definicion": "el banco de material pegado a la pared, al lado de la puerta"
+ },
+ {
+  "palabra": "dintel",
+  "definicion": "la viga que cruza arriba de la puerta y aguanta el peso"
+ },
+ {
+  "palabra": "albañal",
+  "definicion": "el caño por donde salen las aguas sucias de la casa"
+ },
+ {
+  "palabra": "andurrial",
+  "definicion": "un lugar apartado y feo al que nadie va por gusto"
+ },
+ {
+  "palabra": "villorrio",
+  "definicion": "un pueblito chico y sin ninguna gracia"
+ },
+ {
+  "palabra": "erial",
+  "definicion": "el campo abandonado donde ya no crece nada"
+ },
+ {
+  "palabra": "vericueto",
+  "definicion": "el camino angosto y retorcido por el que cuesta andar"
+ },
+ {
+  "palabra": "hontanar",
+  "definicion": "el lugar donde brotan varios manantiales juntos"
+ }
+]
