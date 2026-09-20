@@ -57,11 +57,29 @@ export function useAuth(): EstadoAuth {
 }
 
 function mensajeDeError(error: Error): string {
-  if (error.message.includes('auth/operation-not-allowed')) {
-    return 'Falta activar el acceso anónimo en Firebase (Authentication > Sign-in method > Anonymous).'
+  // Firebase devuelve admin-restricted-operation cuando el proveedor anónimo
+  // existe pero está apagado, y operation-not-allowed en otras variantes. Los
+  // dos significan lo mismo para quien está configurando el proyecto.
+  if (
+    error.message.includes('auth/admin-restricted-operation') ||
+    error.message.includes('auth/operation-not-allowed')
+  ) {
+    return (
+      'Falta habilitar el acceso anónimo en Firebase: ' +
+      'Authentication > Método de acceso > Anónimo > Habilitar.'
+    )
   }
   if (error.message.includes('auth/configuration-not-found')) {
-    return 'El proyecto de Firebase no tiene Authentication configurado. Revisá el README.'
+    return 'El proyecto de Firebase no tiene Authentication inicializado. Revisá el README.'
+  }
+  if (error.message.includes('auth/unauthorized-domain')) {
+    return (
+      'Este dominio no está autorizado en Firebase: ' +
+      'Authentication > Settings > Dominios autorizados.'
+    )
+  }
+  if (error.message.includes('auth/network-request-failed')) {
+    return 'No pude conectarme a Firebase. ¿Estás sin internet?'
   }
   return `No pude iniciar sesión: ${error.message}`
 }
