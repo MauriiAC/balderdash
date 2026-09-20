@@ -3,6 +3,7 @@ import { AccionHost } from '../componentes/AccionHost'
 import { useAccion } from '../hooks/useAccion'
 import { ListaJugadores } from '../componentes/ListaJugadores'
 import { TOTAL_PALABRAS } from '../data/palabras'
+import { MAX_RONDAS, opcionesDeRondas } from '../logica/rondas'
 import { empezarPartida } from '../servicios/ronda'
 import { actualizarRondas } from '../servicios/sala'
 import type { SalaPublica } from '../tipos'
@@ -19,6 +20,7 @@ interface Props {
 export function Lobby({ codigo, sala, uid, alSalir }: Props) {
   const [copiado, setCopiado] = useState(false)
   const cambioDeRondas = useAccion()
+  const opciones = opcionesDeRondas(TOTAL_PALABRAS)
   const soyHost = sala.host === uid
   const jugadores = sala.jugadores ?? {}
   const cantidad = Object.keys(jugadores).length
@@ -63,7 +65,7 @@ export function Lobby({ codigo, sala, uid, alSalir }: Props) {
               )
             }
           >
-            {Array.from({ length: TOTAL_PALABRAS }, (_, i) => i + 1).map((n) => (
+            {opciones.map((n) => (
               <option key={n} value={n}>
                 {n} {n === 1 ? 'ronda' : 'rondas'}
               </option>
@@ -75,7 +77,9 @@ export function Lobby({ codigo, sala, uid, alSalir }: Props) {
           <p className="atenuado chico">Solo {nombreHost} puede cambiar la configuración.</p>
         )}
         <p className="atenuado chico">
-          Hay {TOTAL_PALABRAS} palabras cargadas, así que ese es el máximo de rondas.
+          {TOTAL_PALABRAS <= MAX_RONDAS
+            ? `Hay ${TOTAL_PALABRAS} palabras cargadas, así que ese es el máximo de rondas.`
+            : `${TOTAL_PALABRAS} palabras cargadas. El máximo por partida son ${MAX_RONDAS} rondas.`}
         </p>
       </section>
 

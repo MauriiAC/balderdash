@@ -23,7 +23,7 @@
           "config": {
             ".write": "auth != null && newData.parent().child('host').val() === auth.uid",
             "rondas": {
-              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 50"
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 15 && newData.val() % 1 === 0"
             },
             "$otro": {
               ".validate": false

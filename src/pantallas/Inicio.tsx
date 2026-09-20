@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { TOTAL_PALABRAS } from '../data/palabras'
 import { esCodigoValido, normalizarCodigo } from '../logica/codigoSala'
+import { rondasPorDefecto } from '../logica/rondas'
 import { crearSala, LARGO_MAX_NOMBRE, unirseASala } from '../servicios/sala'
-
-const RONDAS_DEFAULT = 8
 
 interface Props {
   uid: string
@@ -39,7 +38,7 @@ export function Inicio({ uid, nombreInicial, codigoInicial, aviso, alEntrar }: P
       const nuevo = await crearSala({
         uid,
         nombre: nombreLimpio,
-        rondas: Math.min(RONDAS_DEFAULT, TOTAL_PALABRAS),
+        rondas: rondasPorDefecto(TOTAL_PALABRAS),
       })
       alEntrar(nuevo, nombreLimpio)
     })
