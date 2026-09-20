@@ -24,7 +24,8 @@ Se juega a N rondas (default 8) y al final se muestra la tabla.
 - Sin backend propio: el sitio es 100% estático y se deploya en Netlify.
 - Config de Firebase por variables de entorno `VITE_*`. `.env.example` commiteado,
   `.env` en `.gitignore`.
-- Vitest solo para `src/logica/` (funciones puras).
+- Vitest para `src/logica/` (funciones puras) y un script de pruebas de reglas
+  contra el emulador de Firebase.
 
 ## Decisiones tomadas
 
@@ -54,6 +55,7 @@ Ajustado respecto del borrador original. Los cambios y su motivo están abajo.
 
 ```
 salas/{codigo}                          # codigo: 4 letras mayúsculas
+ publico/                               # un solo listener trae todo esto
   host: uid
   creadaEn: number                      # timestamp
   estado: "lobby" | "jugando" | "terminado"
@@ -68,20 +70,34 @@ salas/{codigo}                          # codigo: 4 letras mayúsculas
     fase: "escribiendo" | "votando" | "revelando"
     palabraId: string
     palabra: string                     # denormalizado, para mostrar
-    definiciones/{uid}: { texto }       # privado: propio uid o host
-    entregaron/{uid}: true              # público
-    opciones/{opcionId}: { texto }      # público, aparece al pasar a "votando"
-    mias/{uid}: opcionId                # privado: propio uid o host
-    votos/{uid}: { opcionId }           # privado: propio uid o host
-    votaron/{uid}: true                 # público
-  secreto:
-    autores/{opcionId}: uid | "REAL"    # legible solo en fase "revelando" (o host)
+    opciones/{opcionId}: { texto }      # pool anónimo, aparece en "votando"
+    entregaron/{uid}: true
+    votaron/{uid}: true
   historial/{numero}:                   # escrito por el host al revelar
     palabraId: string
     palabra: string
     opciones/{opcionId}: { texto, autor }   # autor: uid | "REAL"
     votos/{uid}: opcionId
+
+ privado/                               # cada quien lee lo suyo; el host lee todo
+  definiciones/{uid}: { texto }
+  votos/{uid}: { opcionId }
+  mias/{uid}: opcionId
+
+ secreto/                               # legible recién en fase "revelando"
+  autores/{opcionId}: uid | "REAL"
 ```
+
+### Por qué `publico/` / `privado/` / `secreto/`
+
+En RTDB los permisos **cascadean hacia abajo**: si un nodo concede `.read`, todo lo
+que cuelga de él queda legible y los hijos no pueden revocarlo. Con las partes
+privadas mezcladas adentro de `ronda`, `ronda` entera tenía que ser ilegible, y el
+cliente necesitaba un listener separado por cada campo público (`numero`, `fase`,
+`palabra`, `opciones`, `entregaron`, `votaron`…).
+
+Separando por sensibilidad, todo el estado público entra con **un solo `onValue`**
+sobre `salas/{codigo}/publico`, y lo privado queda en ramas con su propia regla.
 
 ### Cambio 1 — pool anónimo de opciones
 
@@ -135,15 +151,16 @@ Elige una palabra al azar entre las no usadas, escribe `ronda` con
 `numero: 1, fase: "escribiendo"`, marca `usadas/{palabraId}`, `estado: "jugando"`.
 
 **escribiendo → votando**
-Lee `ronda/definiciones`, normaliza todos los textos junto con la definición real,
+Lee `privado/definiciones`, normaliza todos los textos junto con la definición real,
 genera un `opcionId` aleatorio por cada uno, y escribe en un update:
-`opciones`, `mias`, `secreto/autores`, `fase: "votando"`.
+`ronda/opciones`, `privado/mias`, `secreto/autores`, `ronda/fase: "votando"`.
 
 El botón del host se habilita cuando entregaron todos, pero puede forzar antes si
 alguien se colgó. Quien no entregó no tiene opción en el pool; igual puede votar.
 
 **votando → revelando**
-Escribe `historial/{numero}` combinando `opciones`, `secreto/autores` y `ronda/votos`,
+Escribe `historial/{numero}` combinando `ronda/opciones`, `secreto/autores` y
+`privado/votos`,
 y `fase: "revelando"`.
 
 **revelando → siguiente**
@@ -208,27 +225,29 @@ Invariantes que `database.rules.json` tiene que garantizar:
 3. `estado`, `config` y `ronda/fase` solo los escribe el host.
 4. `jugadores/{uid}` solo lo escribe ese uid. `nombre` string de 1..20 caracteres.
    `puntaje` rechazado por `.validate: false`.
-5. `ronda/definiciones/{uid}`: escribe solo ese uid, solo en fase `escribiendo`.
+5. `privado/definiciones/{uid}`: escribe solo ese uid, solo en fase `escribiendo`.
    Lee solo ese uid o el host.
-6. `ronda/votos/{uid}`: escribe solo ese uid, solo en fase `votando`, solo si no
+6. `privado/votos/{uid}`: escribe solo ese uid, solo en fase `votando`, solo si no
    existía (el voto es final), y el `opcionId` tiene que existir en `ronda/opciones`
-   y ser distinto de `ronda/mias/{uid}`. Lee solo ese uid o el host.
-7. `ronda/opciones`, `ronda/mias`, `secreto`, `historial`, `usadas`: escribe solo el
-   host.
+   y ser distinto de `privado/mias/{uid}`. Lee solo ese uid o el host.
+7. `ronda/opciones`, `privado/mias`, `secreto`, `historial`, `usadas`: escribe solo
+   el host.
 8. `secreto`: lee cualquiera solo cuando `ronda/fase === "revelando"`. El host lee
    siempre (lo necesita para armar el historial si recargó la página).
 9. `entregaron/{uid}` y `votaron/{uid}`: escribe solo ese uid, valor `true`.
 
-Verificación: checklist manual en el Rules Playground de la consola de Firebase,
-documentada en el README. Cada invariante de arriba se prueba con un caso que tiene
-que pasar y uno que tiene que fallar.
+Verificación: `pruebas/reglas.mjs` corre contra el emulador local (`npm run emulador`
+y `npm run test:reglas`). Cada invariante de arriba tiene un caso que tiene que pasar
+y uno que tiene que ser rechazado. Una regla sin su caso es una regla que no sabemos
+si funciona.
 
 ## Estructura de archivos
 
 ```
 balderdash/
-├── .env.example  .gitignore  README.md
-├── database.rules.json   netlify.toml
+├── .env.example  .gitignore  .npmrc  README.md
+├── database.rules.json   firebase.json  .firebaserc   netlify.toml
+├── pruebas/reglas.mjs           # reglas contra el emulador
 ├── index.html  package.json  tsconfig.json  vite.config.ts
 └── src/
     ├── main.tsx  App.tsx  estilos.css

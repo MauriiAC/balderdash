@@ -1,0 +1,57 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "salas": {
+      "$codigo": {
+        ".read": false,
+        ".write": false,
+
+        "publico": {
+          ".read": "auth != null",
+
+          "host": {
+            ".write": "auth != null && !data.exists() && newData.val() === auth.uid",
+            ".validate": "newData.isString()"
+          },
+
+          "creadaEn": {
+            ".write": "auth != null && !data.exists()",
+            ".validate": "newData.isNumber()"
+          },
+
+          "estado": {
+            ".write": "auth != null && (!data.exists() || newData.parent().child('host').val() === auth.uid)",
+            ".validate": "newData.val() === 'lobby' || newData.val() === 'jugando' || newData.val() === 'terminado'"
+          },
+
+          "config": {
+            ".write": "auth != null && newData.parent().child('host').val() === auth.uid",
+            "rondas": {
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 50"
+            },
+            "$otro": { ".validate": false }
+          },
+
+          "jugadores": {
+            "$uid": {
+              ".write": "auth != null && $uid === auth.uid",
+              ".validate": "!newData.exists() || newData.hasChild('nombre')",
+              "nombre": {
+                ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 20"
+              },
+              "conectado": {
+                ".validate": "newData.isBoolean()"
+              },
+              "puntaje": { ".validate": false },
+              "$otro": { ".validate": false }
+            }
+          },
+
+          "$otro": { ".validate": false }
+        }
+      }
+    }
+  }
+}
