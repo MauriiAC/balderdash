@@ -85,9 +85,11 @@ if (!limpieza.ok) {
 
 const A = cliente('a')
 const B = cliente('b')
+const C = cliente('c')
 const anon = cliente('anon')
 const uidA = (await signInAnonymously(A.auth)).user.uid
 const uidB = (await signInAnonymously(B.auth)).user.uid
+const uidC = (await signInAnonymously(C.auth)).user.uid
 
 // ─── Sala y lobby ────────────────────────────────────────────────────────────
 
@@ -121,6 +123,9 @@ await debeFallar('B mete un campo inventado en la sala', () => set(ref(B.db, `${
 await debeFallar('B pone un nombre vacío', () => set(ref(B.db, `${P}/jugadores/${uidB}/nombre`), ''))
 await debeFallar('B pone un estado inválido', () => set(ref(B.db, `${P}/estado`), 'cualquiera'))
 await debeFallar('B marca una palabra como usada', () => set(ref(B.db, `${P}/usadas/cazcarria`), true))
+await debeFallar('B antedata la sala al futuro', () =>
+  set(ref(B.db, `${P}/creadaEn`), Date.now() + 86400000),
+)
 
 titulo('Lo que sí puede')
 await debeAndar('B se cambia su propio nombre', () => set(ref(B.db, `${P}/jugadores/${uidB}/nombre`), 'Sofía'))
@@ -191,6 +196,9 @@ await debeFallar('B vota antes de tiempo', () =>
 await debeFallar('B entrega una definición vacía', () =>
   set(ref(B.db, `${R}/privado/definiciones/${uidB}/texto`), ''),
 )
+await debeFallar('B se marca como que ya votó, en plena escritura', () =>
+  set(ref(B.db, `${RP}/ronda/votaron/${uidB}`), true),
+)
 
 titulo('Fase votando')
 const idReal = 'aaaa0000'
@@ -224,6 +232,9 @@ await debeFallar('B vota una opción que no existe', () =>
 )
 await debeFallar('B entrega una definición fuera de fase', () =>
   set(ref(B.db, `${R}/privado/definiciones/${uidB}/texto`), 'Tarde'),
+)
+await debeFallar('B se marca como que entregó, ya en votación', () =>
+  set(ref(B.db, `${RP}/ronda/entregaron/${uidB}`), true),
 )
 await debeAndar('B vota la definición de A', () =>
   update(ref(B.db, R), {
@@ -289,6 +300,18 @@ await debeAndar('A limpia privado y secreto y pasa a la ronda 2', () =>
     privado: null,
     secreto: null,
   }),
+)
+
+titulo('Entrar tarde a una partida ya empezada')
+await debeFallar('C se cuela en la partida en curso', () =>
+  update(ref(C.db, `${RP}/jugadores/${uidC}`), { nombre: 'Tercero', conectado: true }),
+)
+await debeAndar('B, que ya estaba, se reconecta', () =>
+  set(ref(B.db, `${RP}/jugadores/${uidB}/conectado`), true),
+)
+await debeAndar('B se va de la sala', () => set(ref(B.db, `${RP}/jugadores/${uidB}`), null))
+await debeFallar('y no puede volver hasta la próxima sala', () =>
+  update(ref(B.db, `${RP}/jugadores/${uidB}`), { nombre: 'Sofi', conectado: true }),
 )
 
 console.log(`\n${ok} ok, ${mal} mal`)

@@ -14,7 +14,7 @@
           },
           "creadaEn": {
             ".write": "auth != null && !data.exists()",
-            ".validate": "newData.isNumber()"
+            ".validate": "newData.isNumber() && newData.val() <= now"
           },
           "estado": {
             ".write": "auth != null && (!data.exists() || newData.parent().child('host').val() === auth.uid)",
@@ -31,7 +31,7 @@
           },
           "jugadores": {
             "$uid": {
-              ".write": "auth != null && $uid === auth.uid",
+              ".write": "auth != null && $uid === auth.uid && (data.exists() || !newData.exists() || newData.parent().parent().child('estado').val() === 'lobby')",
               ".validate": "!newData.exists() || newData.hasChild('nombre')",
               "nombre": {
                 ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 20"
@@ -79,13 +79,13 @@
             },
             "entregaron": {
               "$uid": {
-                ".write": "auth != null && ($uid === auth.uid || root.child('salas/' + $codigo + '/publico/host').val() === auth.uid)",
+                ".write": "auth != null && $uid === auth.uid && root.child('salas/' + $codigo + '/publico/ronda/fase').val() === 'escribiendo'",
                 ".validate": "newData.val() === true"
               }
             },
             "votaron": {
               "$uid": {
-                ".write": "auth != null && ($uid === auth.uid || root.child('salas/' + $codigo + '/publico/host').val() === auth.uid)",
+                ".write": "auth != null && $uid === auth.uid && root.child('salas/' + $codigo + '/publico/ronda/fase').val() === 'votando'",
                 ".validate": "newData.val() === true"
               }
             },

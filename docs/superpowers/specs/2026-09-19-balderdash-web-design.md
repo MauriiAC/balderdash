@@ -49,6 +49,14 @@ Se juega a N rondas (default 8) y al final se muestra la tabla.
 Estos tres puntos desaparecerían con Cloud Functions, a costa del plan Blaze y de
 dejar de ser un proyecto puramente estático.
 
+Dos límites menores, asumidos a propósito:
+
+4. **Las salas no se borran nunca.** Nadie tiene permiso para eliminarlas. Cada
+   partida pesa unos pocos KB contra el 1 GB del plan gratuito, así que hay margen
+   de sobra; si algún día molesta, se limpian desde la consola.
+5. **El código de sala es adivinable**: 4 letras, 456.976 combinaciones. Para jugar
+   entre amigos no es un problema real.
+
 ## Modelo de datos
 
 Ajustado respecto del borrador original. Los cambios y su motivo están abajo.
@@ -234,19 +242,30 @@ Invariantes que `database.rules.json` tiene que garantizar:
    el host.
 8. `secreto`: lee cualquiera solo cuando `ronda/fase === "revelando"`. El host lee
    siempre (lo necesita para armar el historial si recargó la página).
-9. `entregaron/{uid}` y `votaron/{uid}`: escribe solo ese uid, valor `true`.
+9. `entregaron/{uid}` y `votaron/{uid}`: escribe solo ese uid, valor `true`, y
+   solo durante la fase que les corresponde. Marcar "ya entregué" en plena
+   votación no significa nada.
+10. `jugadores/{uid}`: solo se crea con la sala en `lobby`. Quien ya está adentro
+    puede reconectarse o irse en cualquier momento, pero nadie se suma a una
+    partida empezada. Esto alinea las reglas con lo que ya hacía el cliente.
+11. `creadaEn` no puede quedar en el futuro.
 
 Verificación: `pruebas/reglas.mjs` corre contra el emulador local (`npm run emulador`
 y `npm run test:reglas`). Cada invariante de arriba tiene un caso que tiene que pasar
-y uno que tiene que ser rechazado. Una regla sin su caso es una regla que no sabemos
-si funciona.
+y uno que tiene que ser rechazado — 62 en total. Una regla sin su caso es una regla
+que no sabemos si funciona.
+
+El script limpia la base al arrancar. Sin eso, las salas de la corrida anterior
+quedan con un host de un uid viejo (cada `signInAnonymously` crea un usuario nuevo)
+y los casos del host empiezan a fallar por contaminación, no por las reglas.
 
 ## Estructura de archivos
 
 ```
 balderdash/
-├── .env.example  .gitignore  .npmrc  README.md
-├── database.rules.json   firebase.json  .firebaserc   netlify.toml
+├── .env.example  .env.emulador  .gitignore  .npmrc  README.md
+├── database.rules.json   firebase.json  .firebaserc
+├── netlify.toml                 # build, redirect SPA y headers
 ├── pruebas/reglas.mjs           # reglas contra el emulador
 ├── index.html  package.json  tsconfig.json  vite.config.ts
 └── src/
@@ -292,6 +311,9 @@ Si la partida pide más rondas que palabras disponibles, el lobby avisa y limita
 máximo de rondas a la cantidad de palabras.
 
 ## Etapas de implementación
+
+Las cuatro están hechas. Se dejan acá como registro del orden en que se construyó.
+
 
 1. **Scaffold + sala.** Vite, Firebase, auth anónima, crear/unirse con código de 4
    letras, lobby con presencia. Verificable con dos pestañas.
