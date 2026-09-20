@@ -257,21 +257,23 @@ balderdash/
     ├── logica/                  # puro, sin Firebase → testeable
     │   ├── normalizar.ts
     │   ├── barajar.ts
+    │   ├── seleccionPalabra.ts
     │   ├── puntaje.ts
     │   └── codigoSala.ts
     ├── servicios/               # única capa que toca RTDB
     │   ├── sala.ts              # crear, unirse, presencia, suscripción
     │   └── ronda.ts             # acciones del host + acciones del jugador
     ├── hooks/
-    │   ├── useAuth.ts
-    │   ├── useSala.ts
-    │   └── useSesionLocal.ts
+    │   ├── useAuth.ts  useSala.ts  useSesionLocal.ts
+    │   ├── usePrivado.ts        # lo que solo ve su dueño
+    │   └── useAccion.ts         # ocupado + error de una acción async
     ├── pantallas/
     │   ├── Inicio.tsx  Lobby.tsx
     │   ├── Escribiendo.tsx  Votando.tsx  Revelando.tsx
     │   └── Final.tsx
     └── componentes/
-        ├── ListaJugadores.tsx
+        ├── ListaJugadores.tsx  ListaEspera.tsx
+        ├── CabeceraRonda.tsx   AccionHost.tsx
         └── Cargando.tsx
 ```
 

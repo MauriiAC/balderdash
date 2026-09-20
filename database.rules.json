@@ -2,38 +2,33 @@
   "rules": {
     ".read": false,
     ".write": false,
-
     "salas": {
       "$codigo": {
         ".read": false,
         ".write": false,
-
         "publico": {
           ".read": "auth != null",
-
           "host": {
             ".write": "auth != null && !data.exists() && newData.val() === auth.uid",
             ".validate": "newData.isString()"
           },
-
           "creadaEn": {
             ".write": "auth != null && !data.exists()",
             ".validate": "newData.isNumber()"
           },
-
           "estado": {
             ".write": "auth != null && (!data.exists() || newData.parent().child('host').val() === auth.uid)",
             ".validate": "newData.val() === 'lobby' || newData.val() === 'jugando' || newData.val() === 'terminado'"
           },
-
           "config": {
             ".write": "auth != null && newData.parent().child('host').val() === auth.uid",
             "rondas": {
               ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 50"
             },
-            "$otro": { ".validate": false }
+            "$otro": {
+              ".validate": false
+            }
           },
-
           "jugadores": {
             "$uid": {
               ".write": "auth != null && $uid === auth.uid",
@@ -44,12 +39,148 @@
               "conectado": {
                 ".validate": "newData.isBoolean()"
               },
-              "puntaje": { ".validate": false },
-              "$otro": { ".validate": false }
+              "puntaje": {
+                ".validate": false
+              },
+              "$otro": {
+                ".validate": false
+              }
             }
           },
-
-          "$otro": { ".validate": false }
+          "usadas": {
+            ".write": "auth != null && newData.parent().child('host').val() === auth.uid",
+            "$palabraId": {
+              ".validate": "newData.val() === true"
+            }
+          },
+          "ronda": {
+            ".write": "auth != null && newData.parent().child('host').val() === auth.uid",
+            "numero": {
+              ".validate": "newData.isNumber() && newData.val() >= 1"
+            },
+            "fase": {
+              ".validate": "newData.val() === 'escribiendo' || newData.val() === 'votando' || newData.val() === 'revelando'"
+            },
+            "palabraId": {
+              ".validate": "newData.isString()"
+            },
+            "palabra": {
+              ".validate": "newData.isString()"
+            },
+            "opciones": {
+              "$opcionId": {
+                "texto": {
+                  ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 300"
+                },
+                "$otro": {
+                  ".validate": false
+                }
+              }
+            },
+            "entregaron": {
+              "$uid": {
+                ".write": "auth != null && ($uid === auth.uid || root.child('salas/' + $codigo + '/publico/host').val() === auth.uid)",
+                ".validate": "newData.val() === true"
+              }
+            },
+            "votaron": {
+              "$uid": {
+                ".write": "auth != null && ($uid === auth.uid || root.child('salas/' + $codigo + '/publico/host').val() === auth.uid)",
+                ".validate": "newData.val() === true"
+              }
+            },
+            "$otro": {
+              ".validate": false
+            }
+          },
+          "historial": {
+            ".write": "auth != null && newData.parent().child('host').val() === auth.uid",
+            "$numero": {
+              ".validate": "newData.hasChildren(['palabraId', 'palabra', 'opciones'])",
+              "palabraId": {
+                ".validate": "newData.isString()"
+              },
+              "palabra": {
+                ".validate": "newData.isString()"
+              },
+              "opciones": {
+                "$opcionId": {
+                  ".validate": "newData.hasChildren(['texto', 'autor'])",
+                  "texto": {
+                    ".validate": "newData.isString()"
+                  },
+                  "autor": {
+                    ".validate": "newData.isString()"
+                  },
+                  "$otro": {
+                    ".validate": false
+                  }
+                }
+              },
+              "votos": {
+                "$uid": {
+                  ".validate": "newData.isString()"
+                }
+              },
+              "$otro": {
+                ".validate": false
+              }
+            }
+          },
+          "$otro": {
+            ".validate": false
+          }
+        },
+        "privado": {
+          ".write": "auth != null && root.child('salas/' + $codigo + '/publico/host').val() === auth.uid && !newData.exists()",
+          "definiciones": {
+            ".read": "auth != null && root.child('salas/' + $codigo + '/publico/host').val() === auth.uid",
+            "$uid": {
+              ".read": "auth != null && $uid === auth.uid",
+              ".write": "auth != null && $uid === auth.uid && root.child('salas/' + $codigo + '/publico/ronda/fase').val() === 'escribiendo'",
+              "texto": {
+                ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 300"
+              },
+              "$otro": {
+                ".validate": false
+              }
+            }
+          },
+          "votos": {
+            ".read": "auth != null && root.child('salas/' + $codigo + '/publico/host').val() === auth.uid",
+            "$uid": {
+              ".read": "auth != null && $uid === auth.uid",
+              ".write": "auth != null && $uid === auth.uid && !data.exists() && root.child('salas/' + $codigo + '/publico/ronda/fase').val() === 'votando'",
+              "opcionId": {
+                ".validate": "newData.isString() && root.child('salas/' + $codigo + '/publico/ronda/opciones/' + newData.val()).exists() && newData.val() !== root.child('salas/' + $codigo + '/privado/mias/' + auth.uid).val()"
+              },
+              "$otro": {
+                ".validate": false
+              }
+            }
+          },
+          "mias": {
+            ".write": "auth != null && root.child('salas/' + $codigo + '/publico/host').val() === auth.uid",
+            "$uid": {
+              ".read": "auth != null && $uid === auth.uid",
+              ".validate": "newData.isString()"
+            }
+          },
+          "$otro": {
+            ".validate": false
+          }
+        },
+        "secreto": {
+          ".read": "auth != null && (root.child('salas/' + $codigo + '/publico/ronda/fase').val() === 'revelando' || root.child('salas/' + $codigo + '/publico/host').val() === auth.uid)",
+          ".write": "auth != null && root.child('salas/' + $codigo + '/publico/host').val() === auth.uid",
+          "autores": {
+            "$opcionId": {
+              ".validate": "newData.isString()"
+            }
+          },
+          "$otro": {
+            ".validate": false
+          }
         }
       }
     }

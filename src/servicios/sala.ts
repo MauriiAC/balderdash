@@ -106,20 +106,34 @@ export function mantenerPresencia(codigo: string, uid: string): () => void {
     if (snap.val() !== true) return
     // Primero se registra la baja y recién después se marca conectado: si el
     // navegador muere en el medio, no queda un `true` colgado para siempre.
-    void onDisconnect(refConectado)
+    //
+    // El catch no es decorativo: si la sala se borró mientras estábamos
+    // adentro, las reglas rechazan escribir `conectado` en un jugador que ya
+    // no existe. Es esperable y no rompe nada; la app se entera por el
+    // listener de la sala.
+    onDisconnect(refConectado)
       .set(false)
       .then(() => set(refConectado, true))
+      .catch(ignorarSiLaSalaSeFue)
   })
 
   // No se escribe `false` al desmontar: el socket sigue vivo, el jugador sigue
   // conectado. La baja la hace el servidor vía onDisconnect, o `salirDeSala`.
   return () => {
     desuscribir()
-    void onDisconnect(refConectado).cancel()
+    onDisconnect(refConectado).cancel().catch(ignorarSiLaSalaSeFue)
   }
 }
 
 /** Solo el host puede tocar la config; las reglas lo rechazan para el resto. */
 export async function actualizarRondas(codigo: string, rondas: number): Promise<void> {
   await update(ref(db, rutaPublico(codigo, 'config')), { rondas })
+}
+
+/**
+ * Los fallos de presencia no son fatales: la sala pudo borrarse o el jugador
+ * pudo salir mientras había una escritura en vuelo. Se registran y se siguen.
+ */
+function ignorarSiLaSalaSeFue(error: Error): void {
+  console.debug('presencia:', error.message)
 }

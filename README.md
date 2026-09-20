@@ -12,8 +12,9 @@ con la verdadera y todos votan cuál creen que es la real.
 React + TypeScript + Vite, Firebase Realtime Database, sin backend propio. El sitio
 es 100% estático.
 
-> **Estado: etapa 1 de 4.** Andan las salas, el lobby, la presencia y la reconexión.
-> El ciclo de ronda, el puntaje y el deploy llegan en las etapas siguientes.
+> **Estado: etapa 2 de 4.** Andan las salas, el lobby, la presencia, la reconexión
+> y el ciclo de ronda completo (escribir → votar → revelar). La tabla de posiciones
+> y el deploy llegan en las etapas siguientes.
 
 ## Desarrollo con el emulador
 

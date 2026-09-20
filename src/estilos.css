@@ -284,3 +284,132 @@ button.secundario {
     animation-duration: 3s;
   }
 }
+
+/* ── Ronda ──────────────────────────────────────────────────────────────── */
+
+.palabra {
+  font-size: 2.3rem;
+  color: var(--acento);
+  letter-spacing: -0.02em;
+  word-break: break-word;
+}
+
+textarea {
+  width: 100%;
+  padding: 13px 14px;
+  font: inherit;
+  color: var(--texto);
+  background: var(--fondo-panel-alto);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  resize: vertical;
+  min-height: 110px;
+}
+
+textarea:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.definicion-propia {
+  background: var(--fondo-panel-alto);
+  border-radius: var(--radio);
+  padding: 13px 14px;
+}
+
+.lista-jugadores .pendiente {
+  opacity: 0.5;
+}
+
+.tilde,
+.punto-espera {
+  width: 16px;
+  flex: none;
+  text-align: center;
+  color: var(--ok);
+  font-weight: 700;
+}
+
+.punto-espera::before {
+  content: '·';
+  color: var(--texto-atenuado);
+}
+
+.opciones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opcion {
+  width: 100%;
+  text-align: left;
+  font-weight: 400;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 15px 16px;
+}
+
+.opcion-texto {
+  flex: 1;
+  min-width: 0;
+}
+
+.opcion.elegida {
+  border-color: var(--acento);
+  background: rgba(139, 92, 246, 0.16);
+}
+
+.opcion.mia {
+  opacity: 1;
+  background: none;
+  border-style: dashed;
+  color: var(--texto-atenuado);
+}
+
+.opcion:disabled {
+  cursor: default;
+}
+
+.revelaciones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.revelacion {
+  gap: 8px;
+}
+
+.revelacion.real {
+  border-color: var(--ok);
+  background: rgba(74, 222, 128, 0.08);
+}
+
+.revelacion .opcion-texto {
+  font-size: 1.05rem;
+}
+
+.autoria {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--texto-atenuado);
+}
+
+.autoria strong {
+  color: var(--texto);
+}
+
+.revelacion.real .autoria strong {
+  color: var(--ok);
+}

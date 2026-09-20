@@ -1,10 +1,14 @@
 import { useCallback, useState } from 'react'
 import { Cargando } from './componentes/Cargando'
 import { useAuth } from './hooks/useAuth'
+import { usePrivado } from './hooks/usePrivado'
 import { useSala } from './hooks/useSala'
 import { useSesionLocal } from './hooks/useSesionLocal'
+import { Escribiendo } from './pantallas/Escribiendo'
 import { Inicio } from './pantallas/Inicio'
 import { Lobby } from './pantallas/Lobby'
+import { Revelando } from './pantallas/Revelando'
+import { Votando } from './pantallas/Votando'
 import { salirDeSala } from './servicios/sala'
 
 export function App() {
@@ -14,6 +18,7 @@ export function App() {
     sesion?.codigo ?? null,
     uid,
   )
+  const { miTexto, miVoto, miOpcionId } = usePrivado(sesion?.codigo ?? null, uid)
   const [aviso, setAviso] = useState<string | null>(null)
 
   const alEntrar = useCallback(
@@ -25,7 +30,13 @@ export function App() {
   )
 
   const alSalir = useCallback(() => {
-    if (sesion && uid) void salirDeSala(sesion.codigo, uid)
+    // Si el borrado falla, igual se limpia la sesión local: el jugador quiere
+    // irse. Queda marcado como desconectado por el onDisconnect.
+    if (sesion && uid) {
+      salirDeSala(sesion.codigo, uid).catch((e: Error) => {
+        console.debug('salir de la sala:', e.message)
+      })
+    }
     limpiar()
   }, [sesion, uid, limpiar])
 
@@ -83,14 +94,29 @@ export function App() {
     return <Lobby codigo={sesion.codigo} sala={sala} uid={uid} alSalir={alSalir} />
   }
 
+  if (sala.estado === 'jugando') {
+    const ronda = sala.ronda
+    if (!ronda) return <Cargando mensaje="Armando la ronda…" />
+
+    const comun = { codigo: sesion.codigo, sala, ronda, uid }
+    switch (ronda.fase) {
+      case 'escribiendo':
+        return <Escribiendo {...comun} miTexto={miTexto} />
+      case 'votando':
+        return <Votando {...comun} miVoto={miVoto} miOpcionId={miOpcionId} />
+      case 'revelando':
+        return <Revelando {...comun} />
+    }
+  }
+
   return (
     <div className="pantalla">
       <header className="tapa">
-        <h1>Partida en curso</h1>
+        <h1>Terminó la partida</h1>
       </header>
       <p className="atenuado">
-        El ciclo de ronda llega en la etapa 2. Estado actual: <code>{sala.estado}</code>
-        {sala.ronda ? ` · ronda ${sala.ronda.numero} · ${sala.ronda.fase}` : ''}
+        La tabla de posiciones llega en la etapa 3. Se jugaron{' '}
+        {Object.keys(sala.historial ?? {}).length} rondas.
       </p>
       <button className="secundario" onClick={alSalir}>
         Salir de la sala
