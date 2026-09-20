@@ -9,3 +9,11 @@ dist
 database-debug.log
 firebase-debug.log
 ui-debug.log
+
+# generador de palabras
+candidatos.csv
+tanda*.json
+*.jsonl
+es_full.txt
+__pycache__/
+*.pyc
