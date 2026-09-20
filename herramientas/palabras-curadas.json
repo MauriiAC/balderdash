@@ -117,11 +117,11 @@
  },
  {
   "palabra": "adarga",
-  "definicion": "el escudo ovalado de cuero"
+  "definicion": "el escudo ovalado de cuero que usaban los jinetes moros"
  },
  {
   "palabra": "alfanje",
-  "definicion": "el sable corto y curvo"
+  "definicion": "el sable corto y curvo de un solo filo"
  },
  {
   "palabra": "chirimía",
@@ -225,7 +225,7 @@
  },
  {
   "palabra": "cencerrada",
-  "definicion": "el ruido de latas y cencerros con que se burlaba a los recién casados"
+  "definicion": "el escándalo de latas y campanas con que se burlaba a los recién casados"
  },
  {
   "palabra": "retahíla",
@@ -386,5 +386,829 @@
  {
   "palabra": "hontanar",
   "definicion": "el lugar donde brotan varios manantiales juntos"
+ },
+ {
+  "palabra": "alcotán",
+  "definicion": "un halcón chico de alas largas y puntiagudas"
+ },
+ {
+  "palabra": "abubilla",
+  "definicion": "el pájaro con una cresta de plumas que abre como un abanico"
+ },
+ {
+  "palabra": "aguzanieves",
+  "definicion": "el pajarito que camina moviendo la cola para arriba y para abajo"
+ },
+ {
+  "palabra": "oropéndola",
+  "definicion": "el pájaro amarillo con las alas negras que canta como una flauta"
+ },
+ {
+  "palabra": "alimoche",
+  "definicion": "un buitre chico y blancuzco que come carroña"
+ },
+ {
+  "palabra": "cernícalo",
+  "definicion": "el halcón que se queda quieto en el aire agitando las alas"
+ },
+ {
+  "palabra": "avutarda",
+  "definicion": "un ave grande y pesada de campo abierto que casi no vuela"
+ },
+ {
+  "palabra": "garduña",
+  "definicion": "un bicho parecido a la comadreja que entra a los gallineros de noche"
+ },
+ {
+  "palabra": "jineta",
+  "definicion": "un animal chico y manchado, de cola larga con anillos"
+ },
+ {
+  "palabra": "alacrán",
+  "definicion": "el escorpión de aguijón curvo en la punta de la cola"
+ },
+ {
+  "palabra": "tábano",
+  "definicion": "la mosca grande que pica al ganado y saca sangre"
+ },
+ {
+  "palabra": "cochinilla",
+  "definicion": "el bichito gris que se hace bolita bajo las piedras húmedas"
+ },
+ {
+  "palabra": "gusarapo",
+  "definicion": "el bichito que se cría en el agua estancada"
+ },
+ {
+  "palabra": "galápago",
+  "definicion": "la tortuga de agua dulce"
+ },
+ {
+  "palabra": "testuz",
+  "definicion": "la frente de algunos animales, como el toro"
+ },
+ {
+  "palabra": "rocín",
+  "definicion": "un caballo de trabajo, tosco y sin raza"
+ },
+ {
+  "palabra": "jáquima",
+  "definicion": "el cabezal de cuerda que se pone al caballo sin freno"
+ },
+ {
+  "palabra": "cincha",
+  "definicion": "la faja que pasa por debajo de la panza y sujeta la montura"
+ },
+ {
+  "palabra": "estribera",
+  "definicion": "la correa de la que cuelga el apoyo del pie del jinete"
+ },
+ {
+  "palabra": "acial",
+  "definicion": "la pinza que aprieta el labio del animal para que se quede quieto"
+ },
+ {
+  "palabra": "aprisco",
+  "definicion": "el corral techado donde se encierra a las ovejas"
+ },
+ {
+  "palabra": "majada",
+  "definicion": "el grupo de ovejas con su pastor y sus perros"
+ },
+ {
+  "palabra": "zahúrda",
+  "definicion": "el chiquero donde se encierra a los chanchos"
+ },
+ {
+  "palabra": "arrope",
+  "definicion": "el jugo de uva hervido hasta que queda espeso como jarabe"
+ },
+ {
+  "palabra": "mondongo",
+  "definicion": "las tripas del animal, usadas como comida"
+ },
+ {
+  "palabra": "asadura",
+  "definicion": "el conjunto de hígado, corazón y pulmones del animal"
+ },
+ {
+  "palabra": "hollejo",
+  "definicion": "la cascarita fina que le queda a la uva después de exprimirla"
+ },
+ {
+  "palabra": "mosto",
+  "definicion": "el jugo de uva antes de que se convierta en vino"
+ },
+ {
+  "palabra": "alpechín",
+  "definicion": "el líquido oscuro que suelta la aceituna al prensarla"
+ },
+ {
+  "palabra": "cedazo",
+  "definicion": "el tamiz de tela para colar la harina"
+ },
+ {
+  "palabra": "almud",
+  "definicion": "una medida antigua para granos, más o menos un balde"
+ },
+ {
+  "palabra": "celemín",
+  "definicion": "una medida antigua de granos, como media bolsa"
+ },
+ {
+  "palabra": "ardite",
+  "definicion": "una moneda de tan poco valor que servía de ejemplo de lo inútil"
+ },
+ {
+  "palabra": "maravedí",
+  "definicion": "una moneda antigua española de muy poco valor"
+ },
+ {
+  "palabra": "peculio",
+  "definicion": "la plata propia que uno tiene guardada"
+ },
+ {
+  "palabra": "alcabala",
+  "definicion": "el impuesto que se cobraba sobre cada venta"
+ },
+ {
+  "palabra": "gabela",
+  "definicion": "una carga o impuesto que hay que soportar"
+ },
+ {
+  "palabra": "amanuense",
+  "definicion": "el que copiaba textos a mano antes de la imprenta"
+ },
+ {
+  "palabra": "galeote",
+  "definicion": "el condenado a remar encadenado en un barco"
+ },
+ {
+  "palabra": "pechero",
+  "definicion": "el que tenía que pagar impuestos por no ser noble"
+ },
+ {
+  "palabra": "emplasto",
+  "definicion": "la pasta que se pega sobre la piel para curar"
+ },
+ {
+  "palabra": "lacerar",
+  "definicion": "lastimar la carne dejándola desgarrada"
+ },
+ {
+  "palabra": "supurar",
+  "definicion": "cuando una herida larga pus"
+ },
+ {
+  "palabra": "escara",
+  "definicion": "la costra dura que se forma sobre una quemadura"
+ },
+ {
+  "palabra": "sabañón",
+  "definicion": "la hinchazón roja que sale en los dedos por el frío"
+ },
+ {
+  "palabra": "orzuelo",
+  "definicion": "el granito que sale en el borde del párpado"
+ },
+ {
+  "palabra": "flemón",
+  "definicion": "la hinchazón de la encía por una muela infectada"
+ },
+ {
+  "palabra": "enteco",
+  "definicion": "alguien flaco y débil, con aspecto de estar siempre enfermo"
+ },
+ {
+  "palabra": "macilento",
+  "definicion": "alguien de cara pálida y demacrada"
+ },
+ {
+  "palabra": "mustio",
+  "definicion": "una planta que perdió la frescura y se dobla"
+ },
+ {
+  "palabra": "rollizo",
+  "definicion": "alguien gordito y de aspecto saludable"
+ },
+ {
+  "palabra": "enjuto",
+  "definicion": "alguien flaco y seco de carnes"
+ },
+ {
+  "palabra": "cenceño",
+  "definicion": "alguien delgado y de cuerpo firme"
+ },
+ {
+  "palabra": "overo",
+  "definicion": "el caballo con manchas grandes de dos colores"
+ },
+ {
+  "palabra": "alazán",
+  "definicion": "el caballo de pelo rojizo tirando a canela"
+ },
+ {
+  "palabra": "tordillo",
+  "definicion": "el caballo gris con pelos blancos y negros mezclados"
+ },
+ {
+  "palabra": "díscolo",
+  "definicion": "alguien que no obedece y va siempre en contra"
+ },
+ {
+  "palabra": "adusto",
+  "definicion": "alguien serio y sin una sonrisa"
+ },
+ {
+  "palabra": "aleve",
+  "definicion": "alguien que traiciona la confianza que le dieron"
+ },
+ {
+  "palabra": "felón",
+  "definicion": "el que comete una traición grave"
+ },
+ {
+  "palabra": "adulón",
+  "definicion": "el que halaga sin parar al que tiene poder"
+ },
+ {
+  "palabra": "obenque",
+  "definicion": "cada uno de los cables que sujetan el mástil a los costados"
+ },
+ {
+  "palabra": "driza",
+  "definicion": "la cuerda con la que se iza la vela"
+ },
+ {
+  "palabra": "amura",
+  "definicion": "la parte del costado del barco cerca de la proa"
+ },
+ {
+  "palabra": "escollera",
+  "definicion": "el montón de piedras que protege la costa del oleaje"
+ },
+ {
+  "palabra": "bajío",
+  "definicion": "la parte del mar donde de golpe hay poca profundidad"
+ },
+ {
+  "palabra": "rompiente",
+  "definicion": "el lugar donde la ola choca y se deshace"
+ },
+ {
+  "palabra": "calafatear",
+  "definicion": "tapar las juntas del barco para que no entre agua"
+ },
+ {
+  "palabra": "carenar",
+  "definicion": "arreglar el casco del barco por debajo de la línea del agua"
+ },
+ {
+  "palabra": "singladura",
+  "definicion": "lo que un barco navega en veinticuatro horas"
+ },
+ {
+  "palabra": "cabotaje",
+  "definicion": "la navegación que va de puerto en puerto sin alejarse de la costa"
+ },
+ {
+  "palabra": "fondear",
+  "definicion": "tirar el ancla para que el barco se quede quieto"
+ },
+ {
+  "palabra": "pecio",
+  "definicion": "los restos de un barco hundido"
+ },
+ {
+  "palabra": "urdimbre",
+  "definicion": "los hilos a lo largo que se tensan en el telar"
+ },
+ {
+  "palabra": "bombasí",
+  "definicion": "una tela gruesa de algodón con pelillo"
+ },
+ {
+  "palabra": "bramante",
+  "definicion": "el hilo grueso de cáñamo para atar paquetes"
+ },
+ {
+  "palabra": "esparto",
+  "definicion": "el pasto duro con el que se trenzan sogas y esteras"
+ },
+ {
+  "palabra": "ramaje",
+  "definicion": "el conjunto de ramas que forman la copa del árbol"
+ },
+ {
+  "palabra": "sarmiento",
+  "definicion": "la rama larga y flexible de la vid"
+ },
+ {
+  "palabra": "esqueje",
+  "definicion": "el gajo que se corta para plantar y que salga otra planta"
+ },
+ {
+  "palabra": "rizoma",
+  "definicion": "el tallo que crece horizontal bajo la tierra"
+ },
+ {
+  "palabra": "zarcillo",
+  "definicion": "el hilito enroscado con el que la planta se agarra"
+ },
+ {
+  "palabra": "gavilla",
+  "definicion": "el atado de espigas cortadas"
+ },
+ {
+  "palabra": "rastrojo",
+  "definicion": "lo que queda del tallo en el campo después de la cosecha"
+ },
+ {
+  "palabra": "barbecho",
+  "definicion": "la tierra que se deja descansar sin sembrar"
+ },
+ {
+  "palabra": "besana",
+  "definicion": "el trazado de surcos paralelos que va dejando el arado"
+ },
+ {
+  "palabra": "gleba",
+  "definicion": "el terrón que levanta el arado, y por extensión la tierra de labranza"
+ },
+ {
+  "palabra": "azud",
+  "definicion": "la pared baja que atraviesa el río para desviar agua"
+ },
+ {
+  "palabra": "aliviadero",
+  "definicion": "la salida por donde se escapa el agua que sobra de una represa"
+ },
+ {
+  "palabra": "vaguada",
+  "definicion": "la línea del fondo de un valle por donde corre el agua"
+ },
+ {
+  "palabra": "cárcava",
+  "definicion": "la zanja profunda que abre el agua de lluvia en la tierra"
+ },
+ {
+  "palabra": "talud",
+  "definicion": "la pendiente inclinada de un terraplén"
+ },
+ {
+  "palabra": "brocal",
+  "definicion": "el borde de piedra que rodea la boca del pozo"
+ },
+ {
+  "palabra": "pretil",
+  "definicion": "el murito bajo al borde de un puente para que nadie se caiga"
+ },
+ {
+  "palabra": "almena",
+  "definicion": "cada uno de los dientes de piedra arriba de la muralla"
+ },
+ {
+  "palabra": "saetera",
+  "definicion": "la ranura angosta en el muro para tirar flechas"
+ },
+ {
+  "palabra": "alminar",
+  "definicion": "la torre de la mezquita desde la que se llama a rezar"
+ },
+ {
+  "palabra": "ábside",
+  "definicion": "la parte redondeada del fondo de la iglesia"
+ },
+ {
+  "palabra": "arbotante",
+  "definicion": "el arco de piedra que sostiene el muro desde afuera"
+ },
+ {
+  "palabra": "contrafuerte",
+  "definicion": "el refuerzo de piedra pegado al muro para que no se abra"
+ },
+ {
+  "palabra": "pilastra",
+  "definicion": "la columna cuadrada pegada a la pared"
+ },
+ {
+  "palabra": "capitel",
+  "definicion": "la pieza tallada que remata la columna arriba"
+ },
+ {
+  "palabra": "fuste",
+  "definicion": "la parte larga y lisa de la columna"
+ },
+ {
+  "palabra": "friso",
+  "definicion": "la franja decorada que corre a lo largo de una pared"
+ },
+ {
+  "palabra": "artesonado",
+  "definicion": "el techo de madera con casilleros tallados"
+ },
+ {
+  "palabra": "enlucido",
+  "definicion": "la capa fina de revoque que deja la pared lisa"
+ },
+ {
+  "palabra": "sillar",
+  "definicion": "el bloque de piedra tallado a escuadra para construir"
+ },
+ {
+  "palabra": "tapial",
+  "definicion": "el muro hecho de tierra apisonada dentro de un molde"
+ },
+ {
+  "palabra": "alcayata",
+  "definicion": "el clavo doblado en ángulo para colgar cosas"
+ },
+ {
+  "palabra": "escarpia",
+  "definicion": "el clavo con la punta doblada que se clava en la pared"
+ },
+ {
+  "palabra": "bisel",
+  "definicion": "el borde cortado en diagonal"
+ },
+ {
+  "palabra": "rebaba",
+  "definicion": "el material de más que sobresale en el borde de una pieza"
+ },
+ {
+  "palabra": "lezna",
+  "definicion": "el punzón del zapatero para agujerear el cuero"
+ },
+ {
+  "palabra": "polaina",
+  "definicion": "la tela que cubre la pierna desde el tobillo hasta la rodilla"
+ },
+ {
+  "palabra": "alpargata",
+  "definicion": "el calzado de lona con suela de soga"
+ },
+ {
+  "palabra": "zueco",
+  "definicion": "el zapato de madera de una sola pieza"
+ },
+ {
+  "palabra": "chanclo",
+  "definicion": "el calzado que se pone encima del zapato para protegerlo"
+ },
+ {
+  "palabra": "alborozo",
+  "definicion": "la alegría ruidosa que no se puede disimular"
+ },
+ {
+  "palabra": "murria",
+  "definicion": "el bajón callado que no se le explica a nadie"
+ },
+ {
+  "palabra": "desidia",
+  "definicion": "el abandono de quien deja todo sin hacer"
+ },
+ {
+  "palabra": "molicie",
+  "definicion": "la vida demasiado cómoda que ablanda"
+ },
+ {
+  "palabra": "denuedo",
+  "definicion": "el coraje con el que alguien encara algo difícil"
+ },
+ {
+  "palabra": "porfía",
+  "definicion": "la insistencia terca en algo"
+ },
+ {
+  "palabra": "amilanar",
+  "definicion": "hacer que alguien pierda el coraje"
+ },
+ {
+  "palabra": "acobardar",
+  "definicion": "meterle miedo a alguien para que no siga"
+ },
+ {
+  "palabra": "enardecer",
+  "definicion": "encender los ánimos de alguien"
+ },
+ {
+  "palabra": "azuzar",
+  "definicion": "incitar a alguien o a un perro para que ataque"
+ },
+ {
+  "palabra": "zaherir",
+  "definicion": "decirle algo a alguien a propósito para lastimarlo"
+ },
+ {
+  "palabra": "denostar",
+  "definicion": "hablar muy mal de alguien en voz alta"
+ },
+ {
+  "palabra": "vituperar",
+  "definicion": "criticar con dureza y en público"
+ },
+ {
+  "palabra": "injuriar",
+  "definicion": "ofender a alguien de palabra"
+ },
+ {
+  "palabra": "pulla",
+  "definicion": "el comentario con filo dicho como si fuera un chiste"
+ },
+ {
+  "palabra": "socarrón",
+  "definicion": "el que se burla con cara de serio"
+ },
+ {
+  "palabra": "cáustico",
+  "definicion": "un comentario tan ácido que quema"
+ },
+ {
+  "palabra": "acerbo",
+  "definicion": "algo áspero y duro de tragar"
+ },
+ {
+  "palabra": "aciano",
+  "definicion": "una flor azul de campo que crece entre el trigo"
+ },
+ {
+  "palabra": "adelfa",
+  "definicion": "un arbusto de flores rosas cuyas hojas son venenosas"
+ },
+ {
+  "palabra": "retama",
+  "definicion": "el arbusto de ramas finas y flores amarillas"
+ },
+ {
+  "palabra": "mejorana",
+  "definicion": "una hierba aromática parecida al orégano"
+ },
+ {
+  "palabra": "beleño",
+  "definicion": "una planta venenosa que produce alucinaciones"
+ },
+ {
+  "palabra": "abrojo",
+  "definicion": "el fruto con púas que se te pega a la ropa al pasar"
+ },
+ {
+  "palabra": "endrino",
+  "definicion": "el arbusto espinoso de frutos azulados y ácidos"
+ },
+ {
+  "palabra": "serbal",
+  "definicion": "el árbol de racimos de frutos rojos y chiquitos"
+ },
+ {
+  "palabra": "quejigo",
+  "definicion": "un roble de hoja dura que no se cae del todo en invierno"
+ },
+ {
+  "palabra": "madroño",
+  "definicion": "el arbusto de frutos rojos y rugosos que se comen"
+ },
+ {
+  "palabra": "aliso",
+  "definicion": "el árbol de orilla de río con hojas redondeadas"
+ },
+ {
+  "palabra": "chopo",
+  "definicion": "una especie de álamo de tronco recto y alto"
+ },
+ {
+  "palabra": "duramen",
+  "definicion": "la parte dura del centro del tronco"
+ },
+ {
+  "palabra": "toconera",
+  "definicion": "el pedazo de tronco que queda en el suelo después de cortar"
+ },
+ {
+  "palabra": "tizón",
+  "definicion": "el palo a medio quemar que sigue con brasa"
+ },
+ {
+  "palabra": "rescoldo",
+  "definicion": "la brasa escondida entre las cenizas"
+ },
+ {
+  "palabra": "pavesa",
+  "definicion": "la chispita encendida que sube y se apaga en el aire"
+ },
+ {
+  "palabra": "pábilo",
+  "definicion": "la mecha de la vela"
+ },
+ {
+  "palabra": "candil",
+  "definicion": "la lamparita de aceite con una mecha"
+ },
+ {
+  "palabra": "quinqué",
+  "definicion": "la lámpara de querosén con tubo de vidrio"
+ },
+ {
+  "palabra": "palmatoria",
+  "definicion": "el platito con mango donde se apoya la vela"
+ },
+ {
+  "palabra": "tiniebla",
+  "definicion": "la oscuridad total en la que no se ve nada"
+ },
+ {
+  "palabra": "lobreguez",
+  "definicion": "la oscuridad triste de un lugar cerrado"
+ },
+ {
+  "palabra": "alborada",
+  "definicion": "la primera luz del día"
+ },
+ {
+  "palabra": "celaje",
+  "definicion": "el aspecto que toma el cielo con las nubes de colores"
+ },
+ {
+  "palabra": "nubarrón",
+  "definicion": "la nube grande y oscura que anuncia tormenta"
+ },
+ {
+  "palabra": "chubasco",
+  "definicion": "la lluvia fuerte y corta que pasa rápido"
+ },
+ {
+  "palabra": "calabobos",
+  "definicion": "la llovizna fina que te empapa sin que te des cuenta"
+ },
+ {
+  "palabra": "relente",
+  "definicion": "la humedad fresca que baja de noche al aire libre"
+ },
+ {
+  "palabra": "umbría",
+  "definicion": "el lado del cerro donde casi nunca da el sol"
+ },
+ {
+  "palabra": "tolvanera",
+  "definicion": "el remolino de polvo que levanta el viento"
+ },
+ {
+  "palabra": "ventolera",
+  "definicion": "la ráfaga de viento repentina y corta"
+ },
+ {
+  "palabra": "cierzo",
+  "definicion": "el viento frío y seco que baja del noroeste"
+ },
+ {
+  "palabra": "siroco",
+  "definicion": "el viento caliente y seco que viene del desierto"
+ },
+ {
+  "palabra": "vidriado",
+  "definicion": "la capa brillante que se le da a la cerámica al cocerla"
+ },
+ {
+  "palabra": "bruñir",
+  "definicion": "frotar una superficie hasta que quede espejada"
+ },
+ {
+  "palabra": "cardenillo",
+  "definicion": "el verde que le sale al cobre cuando se oxida"
+ },
+ {
+  "palabra": "verdín",
+  "definicion": "la capa verde y resbalosa que crece en las piedras mojadas"
+ },
+ {
+  "palabra": "légamo",
+  "definicion": "el barro pegajoso del fondo de los ríos"
+ },
+ {
+  "palabra": "albufera",
+  "definicion": "la laguna separada del mar por una franja de arena"
+ },
+ {
+  "palabra": "meandro",
+  "definicion": "cada una de las curvas que hace un río en la llanura"
+ },
+ {
+  "palabra": "torrentera",
+  "definicion": "el cauce seco por donde baja el agua cuando llueve fuerte"
+ },
+ {
+  "palabra": "pedregal",
+  "definicion": "el terreno cubierto de piedras sueltas"
+ },
+ {
+  "palabra": "cascajo",
+  "definicion": "el montón de piedritas y pedazos rotos"
+ },
+ {
+  "palabra": "ripio",
+  "definicion": "los pedazos de material que sobran de una obra"
+ },
+ {
+  "palabra": "greda",
+  "definicion": "la arcilla blancuzca que se usa para desengrasar"
+ },
+ {
+  "palabra": "caolín",
+  "definicion": "la arcilla blanca con la que se hace la porcelana"
+ },
+ {
+  "palabra": "argamasa",
+  "definicion": "la mezcla de cal y arena que pega las piedras"
+ },
+ {
+  "palabra": "vellón",
+  "definicion": "toda la lana que sale de una oveja de una vez"
+ },
+ {
+  "palabra": "garañón",
+  "definicion": "el macho que se reserva para la reproducción"
+ },
+ {
+  "palabra": "trasquilar",
+  "definicion": "cortar el pelo mal y desparejo"
+ },
+ {
+  "palabra": "trillar",
+  "definicion": "golpear el trigo para separar el grano de la paja"
+ },
+ {
+  "palabra": "cribar",
+  "definicion": "pasar el grano por una malla para limpiarlo"
+ },
+ {
+  "palabra": "leudar",
+  "definicion": "dejar que la masa suba antes de hornearla"
+ },
+ {
+  "palabra": "rescaldar",
+  "definicion": "cocinar algo tapado con las brasas"
+ },
+ {
+  "palabra": "sofreír",
+  "definicion": "freír algo apenas, a fuego suave"
+ },
+ {
+  "palabra": "rehogar",
+  "definicion": "cocinar a fuego lento en poca grasa y tapado"
+ },
+ {
+  "palabra": "macerar",
+  "definicion": "dejar algo en un líquido para que se ablande y tome gusto"
+ },
+ {
+  "palabra": "mechar",
+  "definicion": "meterle tiras de tocino a la carne antes de cocinarla"
+ },
+ {
+  "palabra": "espolvorear",
+  "definicion": "tirar un polvo por encima de algo"
+ },
+ {
+  "palabra": "rebozar",
+  "definicion": "pasar algo por harina y huevo antes de freírlo"
+ },
+ {
+  "palabra": "empanar",
+  "definicion": "cubrir algo con pan rallado antes de freírlo"
+ },
+ {
+  "palabra": "glasear",
+  "definicion": "cubrir algo con una capa brillante de azúcar"
+ },
+ {
+  "palabra": "pringue",
+  "definicion": "la grasa pegajosa que queda en las manos"
+ },
+ {
+  "palabra": "vaho",
+  "definicion": "el vapor tibio que sale del aliento o de la comida caliente"
+ },
+ {
+  "palabra": "carraspera",
+  "definicion": "la molestia en la garganta que obliga a toser"
+ },
+ {
+  "palabra": "mascullar",
+  "definicion": "hablar entre dientes para que no se entienda"
+ },
+ {
+  "palabra": "musitar",
+  "definicion": "decir algo en voz tan baja que apenas se oye"
+ },
+ {
+  "palabra": "bisbisear",
+  "definicion": "rezar o hablar moviendo los labios sin voz"
+ },
+ {
+  "palabra": "bramar",
+  "definicion": "gritar con furia como un animal grande"
+ },
+ {
+  "palabra": "gañir",
+  "definicion": "el quejido agudo que suelta el perro cuando se lastima"
  }
 ]

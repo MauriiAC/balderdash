@@ -386,6 +386,18 @@ def cmd_exportar(args):
     if repetidos:
         sys.exit(f"Hay palabras repetidas, arreglalas antes de exportar: {repetidos[:10]}")
 
+    # Una definicion que contiene la raiz de su propia palabra regala la
+    # respuesta: el jugador la reconoce sin saber que significa.
+    se_delatan = [r["palabra"] for r in elegidas
+                  if r["palabra"].lower()[:6] in r["definicion"].lower()]
+    if se_delatan:
+        sys.exit("Estas definiciones usan la raiz de su propia palabra y se "
+                 f"regalan solas: {se_delatan[:10]}")
+
+    cortas = [r["palabra"] for r in elegidas if len(r["definicion"]) < 15]
+    if cortas:
+        sys.exit(f"Estas definiciones quedaron demasiado cortas: {cortas[:10]}")
+
     destino = os.path.dirname(args.salida)
     if destino:
         os.makedirs(destino, exist_ok=True)

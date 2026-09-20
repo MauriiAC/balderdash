@@ -33,6 +33,7 @@ import json
 import re
 import sys
 import time
+import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -49,7 +50,7 @@ POR_LOTE = 25
 
 CAMPOS = [
     "palabra", "definicion", "apta", "motivo", "usar",
-    "wikt_existe", "wikt_definicion", "rank",
+    "wikt_existe", "wikt_definicion", "coincidencia", "rank",
 ]
 
 
@@ -167,6 +168,47 @@ def resumir(seccion: str, limite: int = 240) -> str:
     return " / ".join(acepciones)[:limite]
 
 
+# Palabras que aparecen en cualquier definicion y no aportan a la comparacion.
+VACIAS = {
+    "el", "la", "los", "las", "un", "una", "unos", "unas", "de", "del", "al",
+    "que", "se", "y", "o", "en", "con", "por", "para", "su", "sus", "lo",
+    "es", "son", "como", "mas", "muy", "sin", "sobre", "cuando", "donde",
+    "dicho", "dicha", "cosa", "persona", "alguien", "algo", "hace", "hacer",
+    "tiene", "queda", "esta", "ser", "otro", "otra", "todo", "toda", "nada",
+    "parte", "forma", "tipo", "especie", "generalmente", "particular", "suele",
+}
+
+
+def raices(texto: str) -> set:
+    """Raices de las palabras con contenido, para comparar sin tropezar con
+    las variaciones de genero y numero."""
+    limpio = "".join(
+        c for c in unicodedata.normalize("NFD", texto.lower())
+        if unicodedata.category(c) != "Mn"
+    )
+    palabras = re.findall(r"[a-zñ]{3,}", limpio)
+    return {p[:5] for p in palabras if p not in VACIAS}
+
+
+def solapamiento(mia: str, referencia: str) -> float:
+    """
+    Que proporcion de lo que dice nuestra definicion aparece tambien en la del
+    Wikcionario. No decide nada: ordena la revision para mirar primero las que
+    tienen mas chances de estar mal.
+
+    Es una señal ruidosa y conviene saberlo: nuestras definiciones son
+    coloquiales a proposito y las del Wikcionario son formales, asi que dos
+    formas correctas de decir lo mismo pueden no compartir una sola palabra.
+    "chirimia" da 0.00 contra una definicion que dice lo mismo con otras
+    palabras (flauta / instrumento de viento a modo de clarinete). Sirve para
+    elegir por donde empezar, no para descartar sin leer.
+    """
+    a, b = raices(mia), raices(referencia)
+    if not a or not b:
+        return 0.0
+    return len(a & b) / len(a)
+
+
 def cargar_frecuencias(ruta: str) -> dict:
     ranks = {}
     with open(ruta, encoding="utf-8") as f:
@@ -224,14 +266,16 @@ def main():
         elif not definicion_wikt:
             sin_definicion.append(palabra)
 
+        mia = (it.get("definicion") or "").strip()
         filas.append({
             "palabra": palabra,
-            "definicion": (it.get("definicion") or "").strip(),
+            "definicion": mia,
             "apta": "si" if it.get("apta", True) else "no",
             "motivo": (it.get("motivo") or "").strip(),
             "usar": "",
             "wikt_existe": "si" if existe else "NO",
             "wikt_definicion": definicion_wikt,
+            "coincidencia": round(solapamiento(mia, definicion_wikt), 2),
             "rank": ranks.get(palabra.lower(), "") if ranks else "",
         })
 
@@ -265,7 +309,21 @@ def main():
     limpias = len(filas) - len(sin_entrada) - len(sin_espanol) - len(sin_definicion)
     print(f"\n{limpias}/{len(filas)} quedaron con definicion de referencia para "
           f"comparar.", file=sys.stderr)
-    print("Abri el CSV y compara `definicion` contra `wikt_definicion`.",
+
+    # La columna `coincidencia` no decide: ordena la revision. Una baja puede
+    # ser una definicion equivocada, o puede ser la misma idea dicha con otras
+    # palabras. Hay que mirarlas igual, pero primero estas.
+    revisar = sorted(
+        (f for f in filas if f["wikt_definicion"]),
+        key=lambda f: f["coincidencia"],
+    )[:20]
+    if revisar:
+        print("\n  MIRAR PRIMERO (menos palabras en comun con la referencia):",
+              file=sys.stderr)
+        for f in revisar:
+            print(f"    {f['coincidencia']:.2f}  {f['palabra']}", file=sys.stderr)
+
+    print("\nAbri el CSV y compara `definicion` contra `wikt_definicion`.",
           file=sys.stderr)
     print("Marca `usar` en no para descartar una fila.", file=sys.stderr)
 
